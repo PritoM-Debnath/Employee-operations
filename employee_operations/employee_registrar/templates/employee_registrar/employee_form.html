@@ -1,0 +1,35 @@
+{% extends "employee_registrar/base.html" %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        {{form.first_name}}
+    </div>
+
+    <div class="mb-3">
+        <label for="form.last_name" class="form-label">Last Name</label>
+        {{form.last_name}}
+    </div>
+
+    <div class="mb-3">
+        <label for="form.email" class="form-label">Email address</label>
+        {{form.email}}
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="form.mobile" class="form-label">Phone No.</label>
+        {{form.mobile}}
+    </div>
+    
+    <div class="mb-3">
+        <label for="form.date_of_birth" class="form-label">Date of Birth</label>
+        {{form.date_of_birth}}
+    </div>
+      
+      <button type="submit" class="btn btn-primary"><i class="fa-regular fa-floppy-disk"></i></button>
+</form> 
+{% endblock content %}
