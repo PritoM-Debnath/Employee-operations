@@ -5,17 +5,26 @@
 <table class="table table-borderless">
     <thead class="border-bottom font-weight-bold">
         <tr>
+            <td>Profile Picture</td>
             <td>Full Name</td>
             <td>Last Name</td>
             <td>Email</td>
             <td>Mobile</td>
             <td>DOB</td>
+            <td>Action</td>
         </tr>
 
     </thead>   
      <tbody>
         {% for employee in employee_list%}
             <tr>
+                <td>
+                    {% if employee.photo %}
+                        <img src="{{ employee.photo.url }}" alt="{{ employee.first_name }} {{ employee.last_name }}" width="250" height="250">
+                    {% else %}
+                    {% load static %}<img src="{% static "media/src/default.jpg" %}" alt="Default Avatar" width="250" height="250">
+                    {% endif %}
+                </td>
                 <td>{{employee.first_name}}</td>
                 <td>{{employee.last_name}}</td>
                 <td>{{employee.email}}</td>

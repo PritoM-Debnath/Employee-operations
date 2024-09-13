@@ -1,4 +1,6 @@
 from django.db import models
+from PIL import Image
+import os
 
 # Create your models here.
 class Employee(models.Model):
@@ -7,8 +9,24 @@ class Employee(models.Model):
     email = models.EmailField()
     mobile = models.CharField(max_length=15)
     date_of_birth = models.DateField()
-    #photo = models.ImageField(upload_to='employee_photos/')
+    photo = models.ImageField(upload_to='src/', default='src/default.jpg')
 
+    def save(self, *args, **kwargs):
+            super().save(*args, **kwargs)
+
+            if self.photo:
+                # Open the uploaded image
+                img = Image.open(self.photo.path)
+
+                # Resize the image to 250x250
+                if img.height > 250 or img.width > 250:
+                    output_size = (250, 250)
+                    img = img.resize(output_size, Image.LANCZOS)
+                    
+                    # Save the resized image back to the same path
+                    img.save(self.photo.path)
+    
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
     

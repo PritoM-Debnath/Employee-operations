@@ -1,7 +1,7 @@
 {% extends "employee_registrar/base.html" %}
 
 {% block content %}
-<form action="" method="post" autocomplete="off">
+<form action="" method="post" enctype="multipart/form-data" autocomplete="off">
     {% csrf_token %}
 
     <div class="mb-3">
@@ -28,6 +28,11 @@
     <div class="mb-3">
         <label for="form.date_of_birth" class="form-label">Date of Birth</label>
         {{form.date_of_birth}}
+    </div>
+
+    <div class="mb-3">
+        <label for="form.photo" class="form-label">Photo</label>
+        {{form.photo}}
     </div>
       
       <button type="submit" class="btn btn-primary"><i class="fa-regular fa-floppy-disk"></i></button>
