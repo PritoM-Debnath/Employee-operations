@@ -1,5 +1,5 @@
 from django.core.paginator import Paginator 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import EmployeeForm
 from .models import Employee
 
@@ -45,7 +45,13 @@ def employee_form(request, id=0):
             form.save()
         return redirect('/employee/list')
 
+# def employee_delete(request, id):
+#     employee= Employee.objects.get(pk=id)
+#     employee.delete()
+#     return redirect('/employee/list')
+
+
 def employee_delete(request, id):
-    employee= Employee.objects.get(pk=id)
+    employee = get_object_or_404(Employee, pk=id)
     employee.delete()
     return redirect('/employee/list')
