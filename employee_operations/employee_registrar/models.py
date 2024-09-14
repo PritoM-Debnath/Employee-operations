@@ -19,8 +19,8 @@ class Employee(models.Model):
                 img = Image.open(self.photo.path)
 
                 # Resize the image to 250x250
-                if img.height > 250 or img.width > 250:
-                    output_size = (250, 250)
+                if img.height > 100 or img.width > 100:
+                    output_size = (100, 100)
                     img = img.resize(output_size, Image.LANCZOS)
                     
                     # Save the resized image back to the same path

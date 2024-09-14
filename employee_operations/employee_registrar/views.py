@@ -1,11 +1,34 @@
+from django.core.paginator import Paginator 
 from django.shortcuts import render, redirect
 from .forms import EmployeeForm
 from .models import Employee
 
-# Create your views here.
 def employee_list(request):
-    context = {'employee_list': Employee.objects.all()}
-    return render(request, "employee_registrar/employee_list.html",context)
+    # Get sorting parameters from the request
+    sort_by = request.GET.get('sort_by', 'first_name')  # Default sort by 'first_name'
+    sort_order = request.GET.get('order', 'asc')
+
+    # Apply sorting order
+    if sort_order == 'desc':
+        sort_by = f'-{sort_by}'  # Prefix with '-' for descending order
+
+    # Fetch employees and apply sorting
+    employee_list = Employee.objects.all().order_by(sort_by)
+
+    # Pagination (4 items per page)
+    paginator = Paginator(employee_list, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    # Pass the sorting parameters and page object to the template
+    context = {
+        'employee_list': page_obj,
+        'current_sort_by': request.GET.get('sort_by', 'first_name'),
+        'current_sort_order': request.GET.get('order', 'asc')
+    }
+    
+    return render(request, "employee_registrar/employee_list.html", context)
+
 
 def employee_form(request, id=0):
     if request.method == 'GET':
