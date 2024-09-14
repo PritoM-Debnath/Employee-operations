@@ -4,23 +4,19 @@ from .forms import EmployeeForm
 from .models import Employee
 
 def employee_list(request):
-    # Get sorting parameters from the request
-    sort_by = request.GET.get('sort_by', 'first_name')  # Default sort by 'first_name'
+    sort_by = request.GET.get('sort_by', 'first_name')  
     sort_order = request.GET.get('order', 'asc')
 
-    # Apply sorting order
+    # sorting 
     if sort_order == 'desc':
-        sort_by = f'-{sort_by}'  # Prefix with '-' for descending order
+        sort_by = f'-{sort_by}'  
 
-    # Fetch employees and apply sorting
     employee_list = Employee.objects.all().order_by(sort_by)
 
-    # Pagination (4 items per page)
     paginator = Paginator(employee_list, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    # Pass the sorting parameters and page object to the template
     context = {
         'employee_list': page_obj,
         'current_sort_by': request.GET.get('sort_by', 'first_name'),

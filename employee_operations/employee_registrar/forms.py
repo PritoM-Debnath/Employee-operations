@@ -5,7 +5,9 @@ class EmployeeForm(forms.ModelForm):
     class Meta:
         model = Employee
         fields = ['first_name', 'last_name', 'email', 'mobile', 'date_of_birth', 'photo']
-    
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),  # Using HTML5 date picker
+        }
         #fields = ('first_name','last_name','email','mobile','date_of_birth')
         #lables = {
         #    'first_name':'First Name'
@@ -13,7 +15,7 @@ class EmployeeForm(forms.ModelForm):
 
         photo = forms.ImageField(
             label='Profile Picture',
-            required=False,  # Make photo optional since default image is used
+            required=False,  
             widget=forms.FileInput(attrs={'class': 'custom-file-input'})
         )
     def __init__(self, *args, **kwargs):
