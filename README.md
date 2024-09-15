@@ -19,7 +19,7 @@ Following technology must be installed in the system:
 To install Project, follow these steps:
 
 1. Clone the repository: **`git clone https://github.com/PritoM-Debnath/Employee-operations.git`**
-2. Setup the database connection as per your configuration and do [migration]([url](https://docs.djangoproject.com/en/5.1/topics/migrations/)).
+2. Setup the database connection as per your configuration and do [migration](https://docs.djangoproject.com/en/5.1/topics/migrations/).
 3. Navigate to the project directory: **`cd employee_operations`**
 4. Start the project: **`python manage.py runserver`**
 
