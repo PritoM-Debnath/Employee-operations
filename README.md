@@ -14,12 +14,14 @@ This project involves building an employee management system, including pages fo
 Following technology must be installed in the system:
 1. Python
 2. Django
+3. postgreSQL 16 [Although sqlite database comes with] 
    
 To install Project, follow these steps:
 
 1. Clone the repository: **`git clone https://github.com/PritoM-Debnath/Employee-operations.git`**
-2. Navigate to the project directory: **`cd employee_operations`**
-5. Start the project: **`python manage.py runserver`**
+2. Setup the database connection as per your configuration.
+3. Navigate to the project directory: **`cd employee_operations`**
+4. Start the project: **`python manage.py runserver`**
 
 ## **Usage**
 
